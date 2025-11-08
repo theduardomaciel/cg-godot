@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cu8y2r7yn3qfu"]
+
+[ext_resource type="PackedScene" uid="uid://c88hfshl23vn7" path="res://models/door.blend" id="1_v6xrn"]
+[ext_resource type="Script" uid="uid://n3ll5duguq41" path="res://door.gd" id="2_0phs7"]
+
+[node name="door" instance=ExtResource("1_v6xrn")]
+script = ExtResource("2_0phs7")
+open_angle_deg = null
+speed = null

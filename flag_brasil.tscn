@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=3 uid="uid://dn7y5yctdiond"]
+
+[ext_resource type="Material" path="res://materials/Metal049A_2K-JPG/Metal049A_2K-JPG.tres" id="1_amn8n"]
+[ext_resource type="Shader" uid="uid://dkyd0pq437u5c" path="res://flag.gdshader" id="1_l1sgl"]
+[ext_resource type="Texture2D" uid="uid://rowt7yvthm2p" path="res://textures/flags/brasil.png" id="3_rpxdq"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_amn8n"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 20.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1xbea"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_amn8n"]
+noise = SubResource("FastNoiseLite_1xbea")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1sgl"]
+render_priority = 0
+shader = ExtResource("1_l1sgl")
+shader_parameter/uv_offset_texture = SubResource("NoiseTexture2D_amn8n")
+shader_parameter/flag_texture = ExtResource("3_rpxdq")
+shader_parameter/uv_offset_scale = Vector2(-0.1, 0.005)
+shader_parameter/time_scale = Vector2(0.3, 0)
+shader_parameter/face_distortion = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ts4f7"]
+material = SubResource("ShaderMaterial_l1sgl")
+size = Vector2(3, 2)
+subdivide_width = 32
+subdivide_depth = 32
+
+[node name="Flag" type="Node3D"]
+
+[node name="Pole" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_amn8n")
+mesh = SubResource("CylinderMesh_amn8n")
+
+[node name="Sheet" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.6, 8.900002, -5.1142325e-07)
+mesh = SubResource("PlaneMesh_ts4f7")
